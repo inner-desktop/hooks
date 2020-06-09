@@ -1,7 +1,3 @@
-import useAsync from './useAsync';
-import useLoadMore from './useLoadMore';
-import useSearch from './useSearch';
-import useControllableValue from './useControllableValue';
 import useDynamicList from './useDynamicList';
 import useEventEmitter from './useEventEmitter';
 import { configResponsive, useResponsive } from './useResponsive';
@@ -9,7 +5,6 @@ import useLocalStorageState from './useLocalStorageState';
 import useSessionStorageState from './useSessionStorageState';
 import useUpdateEffect from './useUpdateEffect';
 import useUpdateLayoutEffect from './useUpdateLayoutEffect';
-import usePagination from './usePagination';
 import useBoolean from './useBoolean';
 import useToggle from './useToggle';
 import useDocumentVisibility from './useDocumentVisibility';
@@ -22,12 +17,10 @@ import usePrevious from './usePrevious';
 import useMouse from './useMouse';
 import useScroll from './useScroll';
 import useClickAway from './useClickAway';
-import useInViewport from './useInViewport';
 import useKeyPress from './useKeyPress';
 import useEventListener from './useEventListener';
 import useHover from './useHover';
 import useUnmount from './useUnmount';
-import useFormTable from './useFormTable';
 import useSet from './useSet';
 import usePersistFn from './usePersistFn';
 import useMap from './useMap';
@@ -38,20 +31,9 @@ import useCounter from './useCounter';
 import useUpdate from './useUpdate';
 import useEventTarget from './useEventTarget';
 import useHistoryTravel from './useHistoryTravel';
-
-const useControlledValue: typeof useControllableValue = function (...args) {
-  console.warn(
-    'useControlledValue is deprecated and will be removed in the next major version. Please use useControllableValue instead.',
-  );
-  return useControllableValue(...args);
-};
+import useRequest from "./useRequest";
 
 export {
-  useAsync,
-  useLoadMore,
-  useSearch,
-  useControlledValue,
-  useControllableValue,
   useDynamicList,
   useResponsive,
   useEventEmitter,
@@ -60,7 +42,6 @@ export {
   configResponsive,
   useUpdateEffect,
   useUpdateLayoutEffect,
-  usePagination,
   useBoolean,
   useToggle,
   useDocumentVisibility,
@@ -73,11 +54,9 @@ export {
   useMouse,
   useScroll,
   useClickAway,
-  useInViewport,
   useKeyPress,
   useEventListener,
   useHover,
-  useFormTable,
   useUnmount,
   useSet,
   usePersistFn,
@@ -88,5 +67,6 @@ export {
   useUpdate,
   useTextSelection,
   useEventTarget,
-  useHistoryTravel
+  useHistoryTravel,
+  useRequest
 };

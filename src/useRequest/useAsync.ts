@@ -1,4 +1,3 @@
-import {debounce, throttle} from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { BaseOptions, BaseResult, FetchConfig, Fetches, FetchResult, noop, Options, OptionsWithFormat, Service, Subscribe } from './types';
 import { isDocumentVisible } from './utils';
@@ -9,7 +8,8 @@ import useUpdateEffect from './utils/useUpdateEffect';
 import subscribeFocus from './utils/windowFocus';
 import subscribeVisible from './utils/windowVisible';
 import usePrevious from './utils/usePrevious';
-
+import throttle from 'lodash.throttle';
+import debounce from 'lodash.debounce';
 
 const DEFAULT_KEY = 'UMIJS_USE_API_DEFAULT_KEY';
 

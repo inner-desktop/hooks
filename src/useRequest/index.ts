@@ -6,30 +6,30 @@ import usePaginated from './usePaginated';
 import ConfigContext from './configContext';
 
 function useRequest<R = any, P extends any[] = any, U = any, UU extends U = any>(
-  service: CombineService<R, P>,
-  options: OptionsWithFormat<R, P, U, UU>
+    service: CombineService<R, P>,
+    options: OptionsWithFormat<R, P, U, UU>
 ): BaseResult<U, P>
 function useRequest<R = any, P extends any[] = any>(
-  service: CombineService<R, P>,
-  options?: BaseOptions<R, P>
+    service: CombineService<R, P>,
+    options?: BaseOptions<R, P>
 ): BaseResult<R, P>
 
 function useRequest<R extends LoadMoreFormatReturn, RR>(
-  service: CombineService<RR, LoadMoreParams<R>>,
-  options: LoadMoreOptionsWithFormat<R, RR>
+    service: CombineService<RR, LoadMoreParams<R>>,
+    options: LoadMoreOptionsWithFormat<R, RR>
 ): LoadMoreResult<R>
 function useRequest<R extends LoadMoreFormatReturn, RR extends R>(
-  service: CombineService<R, LoadMoreParams<R>>,
-  options: LoadMoreOptions<RR>
+    service: CombineService<R, LoadMoreParams<R>>,
+    options: LoadMoreOptions<RR>
 ): LoadMoreResult<R>
 
 function useRequest<R = any, Item = any, U extends Item = any>(
-  service: CombineService<R, PaginatedParams>,
-  options: PaginatedOptionsWithFormat<R, Item, U>
+    service: CombineService<R, PaginatedParams>,
+    options: PaginatedOptionsWithFormat<R, Item, U>
 ): PaginatedResult<Item>
 function useRequest<R = any, Item = any, U extends Item = any>(
-  service: CombineService<PaginatedFormatReturn<Item>, PaginatedParams>,
-  options: BasePaginatedOptions<U>
+    service: CombineService<PaginatedFormatReturn<Item>, PaginatedParams>,
+    options: BasePaginatedOptions<U>
 ): PaginatedResult<Item>
 
 function useRequest(service: any, options: any = {}) {
@@ -66,9 +66,14 @@ function useRequest(service: any, options: any = {}) {
         result.then((data: any) => resolve(data)).catch((e: any) => reject(e))
       } else if (typeof result === 'string') {
         finalRequestMethod(result).then((data: any) => { resolve(data) }).catch((e: any) => reject(e));
-      } else {
-        console.error("service not found")
-        reject()
+      } else if (typeof result === 'object') {
+        // umi-request 需要拆分下字段
+        if (requestMethod) {
+          finalRequestMethod(result).then((data: any) => { resolve(data) }).catch((e: any) => reject(e));
+        } else {
+          console.error("service not found")
+          reject()
+        }
       }
     });
   }

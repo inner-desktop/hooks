@@ -1,12 +1,17 @@
 {
   "include": ["src"],
+  "exclude": [
+    "**/__tests__/*.test.ts",
+    "**/demo/*"
+  ],
   "compilerOptions": {
     "target": "es5",
+    "emitDeclarationOnly": false,
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "importHelpers": true,
     "downlevelIteration": true,
-    "declaration": true,
+    "declaration": false,
     "sourceMap": true,
     "rootDir": "./",
     "strict": true,
